@@ -1,6 +1,6 @@
 import os
-IMAGE_KEYFRAME_PATH = r"/aic/aic"
-VISUAL_FEATURES_PATH = r"/aic/aic"
+IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
+VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
 for folder_path3 in os.listdir(IMAGE_KEYFRAME_PATH):
   folder_path3 = os.path.join(IMAGE_KEYFRAME_PATH, folder_path3)
