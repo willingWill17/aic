@@ -56,9 +56,7 @@ for images in os.listdir(folder_path2):
         np.save('vectorized_images.npy', np.array(vectorized_images))
 
         # Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
-        images = os.path.join(folder_path2, images)
-        img_paths.append(images)
-        from typing import List, Tuple
+from typing import List, Tuple
 def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
     '''Duyệt tuần tự và đọc các features vector từ file .npy'''
