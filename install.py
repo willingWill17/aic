@@ -35,27 +35,7 @@ np.save(VISUAL_FEATURES_PATH, querry_feat_arr, allow_pickle=True, fix_imports=Tr
 print(querry_feat_arr.shape, type(querry_feat_arr))
 
 
-for images in os.listdir(folder_path2):
-      # Step 1: Load and Preprocess Images
-      # For simplicity, let's assume you have a list of file paths to your images
-    images = []
-    images_error = []
-    for path in img_paths:
-        try:
-          img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)  # Read in grayscale for simplicity
-          img = cv2.resize(img, (64, 64))  # Resize to a consistent size
-          images.append(img)
-          # PIL.Image.open(path)
-        except Exception as e:
-          images_error.append(path)
-          print(e)
-        # Step 2: Vectorize the Images
-        vectorized_images = [img.flatten() for img in images]
-
-        # Step 3: Store in a Numpy File
-        np.save('vectorized_images.npy', np.array(vectorized_images))
-
-        # Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
+# Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
 from typing import List, Tuple
 def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
