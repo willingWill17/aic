@@ -13,18 +13,19 @@ IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
 class TextEmbedding():
-  def __init__(self):
-  
-    self.device = device
-    self.model = model
-    self.preprocess = preprocess
+    def __init__(self, device):
+        self.device = device
+        # Assuming you have a model initialized, you would do something like:
+        # self.model = YourModel()  
+        # self.preprocess = YourPreprocessFunction()
 
-  def __call__(self, querry: str) -> np.ndarray:
-    querry_inputs = clip.tokenize([querry]).to(self.device)
-    with torch.no_grad():
-        querry_feature = self.model.encode_text(querry_inputs)[0]
+    def __call__(self, query: str) -> np.ndarray:
+        # Assuming clip.tokenize is a valid function for tokenization
+        query_inputs = clip.tokenize([query]).to(self.device)
+        with torch.no_grad():
+            query_feature = self.model.encode_text(query_inputs)[0]
 
-    return querry_feature.detach().cpu().numpy()
+        return query_feature.detach().cpu().numpy()
 
 
 # ==================================
