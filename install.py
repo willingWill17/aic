@@ -5,35 +5,37 @@ from tqdm import tqdm
 from PIL import Image
 
 import requests
-
+import cv2
 import torch
 import clip
-from dir import folder_path, img_paths
-IMAGE_KEYFRAME_PATH = "/content/drive/MyDrive/HCMAI22_MiniBatch1/Keyframes/"
-VISUAL_FEATURES_PATH = "/content/drive/MyDrive/HCMAI22_MiniBatch1/CLIP_features"
+from dir import folder_path2, img_paths
+IMAGE_KEYFRAME_PATH = r"/challenge_data"
+VISUAL_FEATURES_PATH = r"/challenge_data"
+
 class TextEmbedding():
   def __init__(self):
+  
     self.device = device
     self.model = model
     self.preprocess = preprocess
 
-  def __call__(self, text: str) -> np.ndarray:
-    text_inputs = clip.tokenize([text]).to(self.device)
+  def __call__(self, querry: str) -> np.ndarray:
+    querry_inputs = clip.tokenize([querry]).to(self.device)
     with torch.no_grad():
-        text_feature = self.model.encode_text(text_inputs)[0]
+        querry_feature = self.model.encode_text(querry_inputs)[0]
 
-    return text_feature.detach().cpu().numpy()
+    return querry_feature.detach().cpu().numpy()
 
 
 # ==================================
-text = "2 people are standing"
-text_embedd = TextEmbedding()
-text_feat_arr = text_embedd(text)
-np.save(VISUAL_FEATURES_PATH, text_feat_arr, allow_pickle=True, fix_imports=True)
-print(text_feat_arr.shape, type(text_feat_arr))
+querry = input("Enter your querry: ")
+querry_embedd = TextEmbedding()
+querry_feat_arr = querry_embedd(querry)
+np.save(VISUAL_FEATURES_PATH, querry_feat_arr, allow_pickle=True, fix_imports=True)
+print(querry_feat_arr.shape, type(querry_feat_arr))
 
 
-for images in os.listdir(folder_path):
+for images in os.listdir(folder_path2):
       # Step 1: Load and Preprocess Images
       # For simplicity, let's assume you have a list of file paths to your images
     images = []
@@ -54,19 +56,19 @@ for images in os.listdir(folder_path):
         np.save('vectorized_images.npy', np.array(vectorized_images))
 
         # Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
-        images = os.path.join(folder_path, images)
+        images = os.path.join(folder_path2, images)
         img_paths.append(images)
         from typing import List, Tuple
 def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
     '''Duyệt tuần tự và đọc các features vector từ file .npy'''
     for feat_npy in tqdm(os.listdir(VISUAL_FEATURES_PATH)):
-        video_name = feat_npy.split('.')[0]
-        feats_arr = np.load(os.path.join(VISUAL_FEATURES_PATH, feat_npy), allow_pickle=True)
+      video_name = feat_npy.split('.')[0]
+      feats_arr = np.load(os.path.join(VISUAL_FEATURES_PATH, feat_npy), allow_pickle=True)
     for idx, feat in enumerate(feats_arr):
       '''Lưu mỗi records với 3 trường thông tin là video_name, keyframe_id, feature_of_keyframes'''
-        instance = (video_name, idx, feat)
-        db.append(instance)
+      instance = (video_name, idx, feat)
+      db.append(instance)
     return db
 
 
@@ -104,5 +106,5 @@ def search_engine(query_arr: np.array,
 
 
 # ==================================
-search_result = search_engine(text_feat_arr, visual_features_db, 10)
+search_result = search_engine(querry_feat_arr, visual_features_db, 10)
 print(search_result)
