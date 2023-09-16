@@ -13,7 +13,7 @@ IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
 class TextEmbedding():
-    def __init__(self, device, model, preprocess):
+    def __init__(self):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         # Assuming you have a model initialized, you would do something like:
         self.model, self.preprocess = clip.load("ViT-B/32", device=device)
