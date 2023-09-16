@@ -16,7 +16,7 @@ class TextEmbedding():
     def __init__(self):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         # Assuming you have a model initialized, you would do something like:
-        self.model, self.preprocess = clip.load("ViT-B/32", device=device)
+        self.model, self.preprocess = clip.load("ViT-B/32", device=self.device)
 
     def __call__(self, query: str) -> np.ndarray:
         # Assuming clip.tokenize is a valid function for tokenization
