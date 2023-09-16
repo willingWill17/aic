@@ -9,8 +9,8 @@ import cv2
 import torch
 import clip
 from dir import folder_path2, img_paths
-IMAGE_KEYFRAME_PATH = r"/challenge_data"
-VISUAL_FEATURES_PATH = r"/challenge_data"
+IMAGE_KEYFRAME_PATH = r"home/mmlab/challenge_data"
+VISUAL_FEATURES_PATH = r"home/mmlab/challenge_data"
 
 class TextEmbedding():
   def __init__(self):
