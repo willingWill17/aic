@@ -14,10 +14,9 @@ VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
 class TextEmbedding():
     def __init__(self, device):
-        self.device = device
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         # Assuming you have a model initialized, you would do something like:
-        # self.model = YourModel()  
-        # self.preprocess = YourPreprocessFunction()
+        self.model, self.preprocess = clip.load("ViT-B/32", device=device)
 
     def __call__(self, query: str) -> np.ndarray:
         # Assuming clip.tokenize is a valid function for tokenization
