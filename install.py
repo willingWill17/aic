@@ -60,9 +60,9 @@ from typing import List, Tuple
 def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
     '''Duyệt tuần tự và đọc các features vector từ file .npy'''
-    for feat_npy in tqdm(os.listdir(VISUAL_FEATURES_PATH)):
+    for feat_npy in tqdm(os.listdir(feature_path)):
       video_name = feat_npy.split('.')[0]
-      feats_arr = np.load(os.path.join(img_paths , feat_npy), allow_pickle=True)
+      feats_arr = np.load(os.path.join(feature_path , feat_npy), allow_pickle=True)
     for idx, feat in enumerate(feats_arr):
       '''Lưu mỗi records với 3 trường thông tin là video_name, keyframe_id, feature_of_keyframes'''
       instance = (video_name, idx, feat)
