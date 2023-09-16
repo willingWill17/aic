@@ -2,7 +2,7 @@ import os
 import numpy as np
 
 from tqdm import tqdm
-from pillow import Image
+from PIL import Image
 
 import requests
 import cv2
