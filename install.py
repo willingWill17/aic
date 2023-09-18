@@ -8,7 +8,7 @@ import requests
 import cv2
 import torch
 import clip
-from dir import img_paths, feature_path 
+from dir import * 
 IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
