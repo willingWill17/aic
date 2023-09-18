@@ -51,8 +51,10 @@ def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
         instance = (video_name, idx, feat)
         
         db.append(instance)
-    # print('shape', len(db))
+    print(db)
     return db
+
+
 
 
 # ==================================
