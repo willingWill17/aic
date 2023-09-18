@@ -41,7 +41,7 @@ def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
     '''Duyệt tuần tự và đọc các features vector từ file .npy'''
     i=0
-    for feat_npy in tqdm(os.listdir(feature_path)):
+    for feat_npy in tqdm(os.listdir(feature_paths)):
       i+=1
       video_name = feat_npy.split('.')[0]
       # print(video_name)
