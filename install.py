@@ -92,5 +92,5 @@ def search_engine(query_arr: np.array,
 
 
 # ==================================
-search_result = search_engine(querry_feat_arr, visual_features_db, 10)
+search_result = search_engine(querry_feat_arr, visual_features_db, 42)
 print(search_result) 
