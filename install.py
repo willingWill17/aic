@@ -64,7 +64,7 @@ print(visual_features_db[0][:2], visual_features_db[0][-1].shape)
 
 def search_engine(query_arr: np.array,
                   db: list,
-                  topk:int=10,
+                  topk:int=42,
                   measure_method: str="dot_product") -> List[dict,]:
 
   '''Duyệt tuyến tính và tính độ tương đồng giữa 2 vector'''
