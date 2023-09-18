@@ -45,7 +45,7 @@ def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
       i+=1
       video_name = feat_npy.split('.')[0]
       # print(video_name)
-      feats_arr = np.load(os.path.join(feature_path , feat_npy), allow_pickle=True)
+      feats_arr = np.load(os.path.join(feature_paths , feat_npy), allow_pickle=True)
       # print('loop', i)
       for idx, feat in enumerate(feats_arr):
         '''Lưu mỗi records với 3 trường thông tin là video_name, keyframe_id, feature_of_keyframes'''
