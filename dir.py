@@ -2,10 +2,12 @@ import os
 IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
-for folder_path3 in os.listdir(IMAGE_KEYFRAME_PATH):
-  folder_path3 = os.path.join(IMAGE_KEYFRAME_PATH, folder_path3)
-  feature_path2 = os.path.join(VISUAL_FEATURES_PATH, folder_path3)
-  feature_path = os.path.join(feature_path2, 'clip-features')
-  folder_path2 = os.path.join(folder_path3, 'keyframes')
-  for img_paths in os.listdir(folder_path2):
-    img_paths = os.path.join(folder_path2, img_paths)
+for folder_path in os.listdir(IMAGE_KEYFRAME_PATH):
+  folder_map = os.path.join(IMAGE_KEYFRAME_PATH,folder_path)
+  for mapp in os.listdir(folder_map):
+    if mapp == 'keyframes':
+      keyframes_map = os.path.join(folder_map, mapp)
+      for keyframes_dir in os.listdir(keyframes_map):
+        img_paths = os.path.join(keyframes_map, keyframes_dir)
+    elif mapp == 'clip-features':
+      feature_paths = os.path.join(folder_map, mapp)
