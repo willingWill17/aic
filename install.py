@@ -8,7 +8,7 @@ import requests
 import cv2
 import torch
 import clip
-from dir import folder_path2, img_paths, feature_path
+from dir import img_paths, feature_path 
 IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
@@ -40,20 +40,28 @@ from typing import List, Tuple
 def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
     db = []
     '''Duyệt tuần tự và đọc các features vector từ file .npy'''
+    i=0
     for feat_npy in tqdm(os.listdir(feature_path)):
+      i+=1
       video_name = feat_npy.split('.')[0]
+      # print(video_name)
       feats_arr = np.load(os.path.join(feature_path , feat_npy), allow_pickle=True)
-    for idx, feat in enumerate(feats_arr):
-      '''Lưu mỗi records với 3 trường thông tin là video_name, keyframe_id, feature_of_keyframes'''
-      instance = (video_name, idx, feat)
-      db.append(instance)
+      # print('loop', i)
+      for idx, feat in enumerate(feats_arr):
+        '''Lưu mỗi records với 3 trường thông tin là video_name, keyframe_id, feature_of_keyframes'''
+        instance = (video_name, idx, feat)
+        
+        db.append(instance)
+    # print('shape', len(db))
     return db
 
 
 # ==================================
 visual_features_db = indexing_methods()
-print()
+# print()
 print(visual_features_db[0][:2], visual_features_db[0][-1].shape)
+# print(visual_features_db[1], visual_features_db[0][-1].shape)
+
 def search_engine(query_arr: np.array,
                   db: list,
                   topk:int=10,
@@ -85,4 +93,4 @@ def search_engine(query_arr: np.array,
 
 # ==================================
 search_result = search_engine(querry_feat_arr, visual_features_db, 10)
-print(search_result)
+print(search_result) 
