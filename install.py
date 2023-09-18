@@ -32,7 +32,6 @@ querry = input("Enter your querry: ")
 querry_embedd = TextEmbedding()
 querry_feat_arr = querry_embedd(querry)
 np.save(VISUAL_FEATURES_PATH, querry_feat_arr, allow_pickle=True, fix_imports=True)
-print(querry_feat_arr.shape, type(querry_feat_arr))
 
 
 # Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
