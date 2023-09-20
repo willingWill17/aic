@@ -58,8 +58,6 @@ def indexing_methods() -> List[Tuple[str, int, np.ndarray],]:
 
 # ==================================
 visual_features_db = indexing_methods()
-# print()
-# print(visual_features_db[1], visual_features_db[0][-1].shape)
 
 def search_engine(query_arr: np.array,
                   db: list,
@@ -85,8 +83,7 @@ def search_engine(query_arr: np.array,
     video_name, idx, _ = db[ins_id]
 
     search_result.append({"video_name":video_name,
-                          "keyframe_id": idx,
-                          "score": distance})
+                          "keyframe_id": idx,})
   return search_result
 
 
