@@ -61,7 +61,7 @@ visual_features_db = indexing_methods()
 
 def search_engine(query_arr: np.array,
                   db: list,
-                  topk:int=42,
+                  topk:int=100,
                   measure_method: str="dot_product") -> List[dict,]:
 
   '''Duyệt tuyến tính và tính độ tương đồng giữa 2 vector'''
@@ -88,5 +88,5 @@ def search_engine(query_arr: np.array,
 
 
 # ==================================
-search_result = search_engine(querry_feat_arr, visual_features_db, 42)
+search_result = search_engine(querry_feat_arr, visual_features_db, 100)
 print(search_result) 
