@@ -8,7 +8,7 @@ import requests
 import cv2
 import torch
 import clip
-from dir import * 
+from dir import feature_paths, img_paths
 IMAGE_KEYFRAME_PATH = r"/aic/challenge_data"
 VISUAL_FEATURES_PATH = r"/aic/challenge_data"
 
@@ -31,7 +31,7 @@ class TextEmbedding():
 querry = input("Enter your querry: ")
 querry_embedd = TextEmbedding()
 querry_feat_arr = querry_embedd(querry)
-np.save(VISUAL_FEATURES_PATH, querry_feat_arr, allow_pickle=True, fix_imports=True)
+np.save(img_paths, querry_feat_arr, allow_pickle=True, fix_imports=True)
 
 
 # Optionally, you can later load the numpy file using np.load('vectorized_images.npy')
